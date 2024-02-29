@@ -21,6 +21,7 @@
     <None Remove="Business\Services\" />
     <None Remove="Business\Services\Interfaces\" />
     <None Remove="Enums\" />
+    <None Remove="Infra\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\" />
@@ -33,5 +34,6 @@
     <Folder Include="Business\Services\" />
     <Folder Include="Business\Services\Interfaces\" />
     <Folder Include="Enums\" />
+    <Folder Include="Infra\Data\" />
   </ItemGroup>
 </Project>

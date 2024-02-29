@@ -1,5 +1,7 @@
 ﻿using pass_trip.Business.Services;
 using pass_trip.Business.Services.Interfaces;
+using pass_trip.Infra.Interfaces;
+using pass_trip.Infra.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +14,13 @@ builder.Services.AddSwaggerGen();
 
 #region DI
 
+//Infra
+builder.Services.AddScoped<IPassportRepository, PassportRepository>();
+
+//Business
 builder.Services.AddScoped<ICountriesService, CountriesService>();
+builder.Services.AddScoped<IPassportService, PassportService>();
+
 
 #endregion
 
