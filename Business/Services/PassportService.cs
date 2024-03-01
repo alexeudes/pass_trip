@@ -36,7 +36,7 @@ namespace pass_trip.Business.Services
 				parser.SetDelimiters(",");
 				parser.HasFieldsEnclosedInQuotes = true;
 
-                parser.ReadLine(); // skip hearder
+                parser.ReadLine(); // skip header
 
 				while (!parser.EndOfData)
                 {

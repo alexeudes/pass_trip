@@ -1,5 +1,6 @@
 ﻿using pass_trip.Business.Services;
 using pass_trip.Business.Services.Interfaces;
+using pass_trip.Helpers;
 using pass_trip.Infra.Interfaces;
 using pass_trip.Infra.Repositories;
 
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+
+
+builder.Services.AddDbContext<DataContext>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
