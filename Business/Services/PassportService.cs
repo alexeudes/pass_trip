@@ -1,28 +1,34 @@
-﻿using System;
-using System.IO;
-using System.Reflection.PortableExecutable;
-using Microsoft.VisualBasic.FileIO;
+﻿using Microsoft.VisualBasic.FileIO;
 using pass_trip.Business.Services.Interfaces;
 using pass_trip.Domain.Models;
 using pass_trip.Enums;
+using pass_trip.Helpers;
 using pass_trip.Infra.Interfaces;
 
 namespace pass_trip.Business.Services
 {
-	public class PassportService : IPassportService
+    public class PassportService : IPassportService
 	{
-		private readonly IPassportRepository _passportRepository;
+        private readonly DataContext _context;
+        private readonly IPassportRepository _passportRepository;
 
-		public PassportService(IPassportRepository passportRepository)
+		public PassportService(IPassportRepository passportRepository, DataContext context)
 		{
-			_passportRepository = passportRepository;
+            _context = context;
+            _passportRepository = passportRepository;
 		}
 
 		public List<Passport> GetListPassportIndexesByCountryName(string name)
 		{
-			var passIndexesPath = _passportRepository.GetPassportIndexFile();
+            if (GetFirstCheckExists())
+                return GetListPassportFromDbByName(name);
+
+            var passIndexesPath = string.Empty;
+            passIndexesPath = _passportRepository.GetPassportIndexFile();
 
             var filteredPassportIndex = StreamParser(passIndexesPath).FindAll(x => x.origin == name);
+
+            InsertPassportIndexes(filteredPassportIndex);
 
             return filteredPassportIndex;
 		}
@@ -75,6 +81,33 @@ namespace pass_trip.Business.Services
                 _ => VisaEnum.free_days_limit,
             };
         }
-	}
+
+        public List<Passport> GetListPassportFromDb()
+        {
+            return _context.Passports.ToList();
+        }
+
+        public List<Passport> GetListPassportFromDbByName(string name)
+        {
+            return _context.Passports.Where(p => p.origin == name).ToList();
+        }
+
+        private bool GetFirstCheckExists()
+        {
+             return _context.Passports.Any();
+        }
+
+        public bool InsertPassportIndexes(List<Passport> passportsIndex)
+        {
+            int result;
+            
+            _context.Passports.AddRange(passportsIndex);
+            result = _context.SaveChanges();
+
+            if (result > 0)
+                return true;
+            return false;
+        }
+    }
 }
 
