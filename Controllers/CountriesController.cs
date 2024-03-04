@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using pass_trip.Business.Services.Interfaces;
 using pass_trip.Domain.Models;
 
@@ -22,7 +18,7 @@ namespace pass_trip.Controllers
         }
 
         [HttpGet(Name = "GetCountries")]
-        public Task<Countries> GetCountries()
+        public Task<List<Countries>> GetCountries()
         {
             return _countriesService.GetCountries();
         }

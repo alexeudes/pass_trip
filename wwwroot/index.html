@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Passport Trip</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Passport Trip</h1>
+        <h4>Choose your passport and determine the type of VISA you'll need for your destination</h4>
+
+        <div class="countries-select">
+            <select id="originCountriesSelect"></select>
+            <p>To</p>
+            <select id="destinationCountriesSelect"></select>
+        </div>
+    </div>
+
+    <script src="js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        getCountries();
+    </script>
+</body>
+</html>
