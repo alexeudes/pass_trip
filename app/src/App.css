@@ -1,0 +1,77 @@
+.container {
+  width: 700px;
+  padding: 40px 32px;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px;
+}
+
+.container h1 {
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.container h4 {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.container .countries-select {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.container .countries-select select {
+  padding: 8px;
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #323760;
+  border: 1px solid #6667b0;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.container .countries-select select:hover {
+  color: #6b43ff;
+  border-color: #6b43ff;
+}
+
+.container .countries-select p {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.container .visa-details .divider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.container .visa-details .divider .line {
+  height: 1px;
+  width: 100%;
+  background: #1d1d1d;
+  opacity: 0.2;
+  margin: 30px 0 16px;
+}
+
+.container .visa-details {
+  padding-top: 25px;
+}
+
+.container .visa-details label {
+  color: #1d1d1d;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.03rem;
+  display: block;
+  margin-top: 12px;
+}
