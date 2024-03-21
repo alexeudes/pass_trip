@@ -1,22 +1,23 @@
+import { EVisa } from "../Enum/VisaEnum"
 export interface ICountry {
     ID: number;
     name: { common: string};
     capital?: string[];
     region?: string;
     flag?: string;
-    languages?: { lang: ILanguage };
+    languages?: string[];
     area: number;
     population: number;
     timezones: string[];
-    currencies: { id: string, curr: ICurrency };
+    currencies: { curr: ICurrency };
 }
 
 export interface ILanguage {
-    langKey: string;
+    langKey: EVisa;
     langName: string;
 }
 
 export interface ICurrency {
-    currKey: string;
-    currName: string
+    name: string;
+    symbol: string
 }

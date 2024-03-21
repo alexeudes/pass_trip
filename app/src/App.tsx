@@ -10,6 +10,18 @@ function App() {
   const [selectedOriginCountry, setSelectedOriginCountry] = useState('');
   const [selectedDestinationCountry, setSelectedDestinationCountry] = useState('');
   const [destinationCountryDisabledSelect, setDestinationCountryDisabledSelect] = useState(true);
+  const [countrySelected, setCountrySelected] = useState<ICountry>(
+    {ID: 0,
+    name: { common: "" },
+    capital: [],
+    region: "",
+    flag: "",
+    languages: [],
+    area: 0,
+    population: 0,
+    timezones: [],
+    currencies: { curr: { name: "", symbol: "" }}
+  } as ICountry);
 
   const handleSelectOriginCountryChange = (event: any) => {
     if (event !== null) {
@@ -19,7 +31,11 @@ function App() {
   }
 
   const handleSelectDestinationCountryChange = (event: any) => {
-    setSelectedDestinationCountry(event.target.value);
+    if (event !== null && event !== "") {
+      setSelectedDestinationCountry(event.target.value);
+      const countrySelectedIndex: number = countries.findIndex(c => c.name.common === event.target.value);
+      setCountrySelected(countries[countrySelectedIndex]);
+    }
   }
 
   useEffect(() => {
@@ -56,7 +72,7 @@ function App() {
                   <option value="">Select your country of origin</option>
                   {countries.map((country, index) => (
                     <option key={index} value={country.name.common}>
-                      {country.name?.common} - {country.flag}
+                      {country.name.common} - {country.flag}
                     </option>
                   ))}
                 </select>
@@ -66,7 +82,7 @@ function App() {
                   <option value="">Select your destination country</option>
                   {countries.map((country, index) => (
                     <option key={index} value={country.name.common}>
-                      {country.name?.common} - {country.flag}
+                      {country.name.common} - {country.flag}
                     </option>
                   ))}
                 </select>
@@ -77,22 +93,19 @@ function App() {
                   <div className="line"></div>
                 </div>
 
-                <label>Country: </label>
-                <label>Capital: </label>
-                <label>Region: </label>
-                <label>Flag: </label>
-                <label>Language(s): </label>
-                <label>Area: </label>
-                <label>Population: </label>
-                <label>Timezone(s): </label>
-                <label>Currencies: </label>
+                <label>Country: {countrySelected.name && countrySelected.name.common}</label>
+                <label>Capital: {countrySelected.capital}</label>
+                <label>Region: {countrySelected.region}</label>
+                <label>Flag: {countrySelected.flag}</label>
+                <label>Language(s): {countrySelected.languages}</label>
+                <label>Area: {countrySelected.area}</label>
+                <label>Population: {countrySelected.population}</label>
+                <label>Timezone(s): {countrySelected.timezones}</label>
+                <label>Currencies: {countrySelected.currencies.curr && countrySelected.currencies.curr.name} - {countrySelected.currencies.curr && countrySelected.currencies.curr.symbol}</label>
               </div>
             </pre>
           )
-
         )
-
-
       }
 
     </div>

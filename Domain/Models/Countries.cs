@@ -24,7 +24,7 @@ namespace pass_trip.Domain.Models
         public string Flag { get; set; }
 
         [property: JsonPropertyName("languages")]
-        public Dictionary<string, string> Languages { get; set; }
+        public Dictionary<LanguagesEnum, string> Languages { get; set; }
 
         [property: JsonPropertyName("area")]
         public decimal Area { get; set; }
