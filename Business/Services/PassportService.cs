@@ -41,8 +41,7 @@ namespace pass_trip.Business.Services
 			{
 				parser.SetDelimiters(",");
 				parser.HasFieldsEnclosedInQuotes = true;
-
-                parser.ReadLine(); // skip header
+                parser.ReadLine();
 
 				while (!parser.EndOfData)
                 {
@@ -55,6 +54,7 @@ namespace pass_trip.Business.Services
                             ID = new Guid(),
                             origin = fields[0],
                             destination = fields[1],
+                            numberOfDays = GetVisaNumberOfDays(fields[2].ToString()),
                             requirement = GetVisaEnum(fields[2])
                         };
 
@@ -80,6 +80,28 @@ namespace pass_trip.Business.Services
                 "-1" => VisaEnum.dest,
                 _ => VisaEnum.free_days_limit,
             };
+        }
+
+        private string GetVisaNumberOfDays(string visaValue)
+        {
+            var typesOfVisa = new string[]
+            {
+                "visa free",
+                "visa on arrival",
+                "e-visa",
+                "eta",
+                "visa required",
+                "covid ban",
+                "no admission",
+                "Hayya Entry Permit",
+                "-1",
+            };
+
+            var normalizedValue = visaValue.Trim().ToLowerInvariant();
+
+            if (typesOfVisa.Any(t => normalizedValue.Contains(t))) return string.Empty;
+
+            return visaValue;
         }
 
         public List<Passport> GetListPassportFromDb()
