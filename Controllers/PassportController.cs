@@ -20,6 +20,13 @@ namespace pass_trip.Controllers
         {
             return _passportService.GetListPassportIndexesByCountryName(name);
         }
+
+        [HttpPost]
+        public IActionResult UpdateDbWithPassportIndex()
+        {
+            var _result = _passportService.UpdateDbWithPassportIndex();
+            return Ok(new { success = _result });
+        }
     }
 }
 

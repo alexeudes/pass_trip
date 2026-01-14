@@ -9,6 +9,7 @@ namespace pass_trip.Business.Services.Interfaces
         bool InsertPassportIndexes(List<Passport> passportsIndex);
         List<Passport> GetListPassportFromDb();
         List<Passport> GetListPassportFromDbByName(string name);
+        bool UpdateDbWithPassportIndex();
     }
 }
 

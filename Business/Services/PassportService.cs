@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualBasic.FileIO;
+﻿using System.Data.Common;
+using Microsoft.Data.Sqlite;
+using Microsoft.VisualBasic.FileIO;
 using pass_trip.Business.Services.Interfaces;
 using pass_trip.Domain.Models;
 using pass_trip.Enums;
@@ -18,19 +20,21 @@ namespace pass_trip.Business.Services
             _passportRepository = passportRepository;
 		}
 
+        public bool UpdateDbWithPassportIndex()
+        {
+            if (GetFirstCheckExists())
+                throw new SqliteException("It already has data", 1);
+
+            var passIndexesPath = _passportRepository.GetPassportIndexFile();
+
+            var filteredPassportIndex = StreamParser(passIndexesPath);
+
+            return InsertPassportIndexes(filteredPassportIndex);
+        }
+
 		public List<Passport> GetListPassportIndexesByCountryName(string name)
 		{
-            if (GetFirstCheckExists())
-                return GetListPassportFromDbByName(name);
-
-            var passIndexesPath = string.Empty;
-            passIndexesPath = _passportRepository.GetPassportIndexFile();
-
-            var filteredPassportIndex = StreamParser(passIndexesPath).FindAll(x => x.origin == name);
-
-            InsertPassportIndexes(filteredPassportIndex);
-
-            return filteredPassportIndex;
+            return GetFirstCheckExists() ? GetListPassportFromDbByName(name) : [];
 		}
 
 		private List<Passport> StreamParser(string filePath)
@@ -120,15 +124,9 @@ namespace pass_trip.Business.Services
         }
 
         public bool InsertPassportIndexes(List<Passport> passportsIndex)
-        {
-            int result;
-            
+        {   
             _context.Passports.AddRange(passportsIndex);
-            result = _context.SaveChanges();
-
-            if (result > 0)
-                return true;
-            return false;
+            return _context.SaveChanges() > 0;
         }
     }
 }
