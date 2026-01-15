@@ -17,10 +17,10 @@ namespace pass_trip.Controllers
             _countriesService = countriesService;
         }
 
-        [HttpGet(Name = "GetCountries")]
-        public Task<List<Countries>> GetCountries()
+        [HttpGet(Name = "GetCountry/{name}")]
+        public Task<Countries> GetCountry([FromQuery] string countryName)
         {
-            return _countriesService.GetCountries();
+            return _countriesService.GetCountry(countryName);
         }
     }
 }
