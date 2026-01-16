@@ -16,14 +16,23 @@ namespace pass_trip.Business.Services
 			_configuration = configuration;
 		}
 
-		public async Task<Countries> GetCountry(string countryName)
+		public async Task<Country> GetCountry(string countryName)
 		{
 			var httpClient = Util.GetHttpInstance();
-			var stream = await httpClient.GetStreamAsync($"{_configuration.GetValue<string>("COUNTRIES_API")}name/{countryName}");
+			var response = await httpClient.GetAsync($"{_configuration.GetValue<string>("COUNTRIES_API")}name/{countryName}");
 
-			var country = await JsonSerializer.DeserializeAsync<Countries>(stream);
+			response.EnsureSuccessStatusCode();
 
-            return country ?? new ();
+			await using var stream = await response.Content.ReadAsStreamAsync();
+
+			var countries = await JsonSerializer.DeserializeAsync<List<Country>>(
+				stream,
+				new JsonSerializerOptions
+				{
+                    PropertyNameCaseInsensitive = true
+				});
+
+			return countries?.FirstOrDefault() ?? new ();
 		}
 	}
 }

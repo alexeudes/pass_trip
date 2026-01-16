@@ -5,44 +5,56 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace pass_trip.Domain.Models
 {
-	public class Countries
-	{
-		public Countries() { }
+	using System.Text.Json.Serialization;
 
-		public Guid ID { get; set; }
+    public class Country
+    {
+        public Guid ID { get; set; }
 
-		[property: JsonPropertyName("name")]
-		public CountryName Name { get; set; }
+        [JsonPropertyName("name")]
+        public CountryName Name { get; set; }
 
-        [property: JsonPropertyName("capital")]
+        [JsonPropertyName("capital")]
         public string[] Capital { get; set; }
 
-        [property: JsonPropertyName("region")]
+        [JsonPropertyName("region")]
         public string Region { get; set; }
 
-        [property: JsonPropertyName("flag")]
+        [JsonPropertyName("flag")]
         public string Flag { get; set; }
 
-        [property: JsonPropertyName("languages")]
-        public Dictionary<LanguagesEnum, string> Languages { get; set; }
+        [JsonPropertyName("languages")]
+        public Dictionary<string, string> Languages { get; set; }
 
-        [property: JsonPropertyName("area")]
-        public decimal Area { get; set; }
+        [JsonPropertyName("area")]
+        public double Area { get; set; }
 
-        [property: JsonPropertyName("population")]
-        public decimal Population { get; set; }
+        [JsonPropertyName("population")]
+        public long Population { get; set; }
 
-        [property: JsonPropertyName("timezones")]
-        public string[] Timezones { get; set; } = Array.Empty<string>();
+        [JsonPropertyName("timezones")]
+        public string[] Timezones { get; set; }
 
-        [property: JsonPropertyName("currencies")]
-        public Dictionary<string, Dictionary<string,string>> Currencies { get; set; }
+        [JsonPropertyName("currencies")]
+        public Dictionary<string, Currency> Currencies { get; set; }
     }
 
     public class CountryName
     {
-        [property: JsonPropertyName("common")]
+        [JsonPropertyName("common")]
         public string Common { get; set; }
+
+        [JsonPropertyName("official")]
+        public string Official { get; set; }
+    }
+
+    public class Currency
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("symbol")]
+        public string Symbol { get; set; }
     }
 }
 

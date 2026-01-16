@@ -5,7 +5,7 @@ namespace pass_trip.Business.Services.Interfaces
 {
 	public interface ICountriesService
 	{
-        Task<Countries> GetCountry(string countryName);
+        Task<Country> GetCountry(string countryName);
     }
 }
 

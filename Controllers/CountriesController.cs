@@ -18,7 +18,7 @@ namespace pass_trip.Controllers
         }
 
         [HttpGet(Name = "GetCountry/{name}")]
-        public Task<Countries> GetCountry([FromQuery] string countryName)
+        public Task<Country> GetCountry([FromQuery] string countryName)
         {
             return _countriesService.GetCountry(countryName);
         }
