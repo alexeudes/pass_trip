@@ -1,94 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Mulish', sans-serif;
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 201 96% 32%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 142 71% 45%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 142 71% 45%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 201 96% 32%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215.2 16.3% 46.9%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
 }
 
-body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
 }
-
-
-.container {
-    width: 700px;
-    padding: 40px 32px;
-    border-radius: 8px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px;
-  }
-  
-  .container h1 {
-    font-size: 1.6rem;
-    text-align: center;
-  }
-  
-  .container h4 {
-    font-size: 0.8rem;
-    text-align: center;
-  }
-  
-  .container .countries-select {
-    display: flex;
-    gap: 16px;
-    margin-top: 20px;
-  }
-  
-  .container .countries-select select {
-    padding: 8px;
-    width: 100%;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #323760;
-    border: 1px solid #6667b0;
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .container .countries-select select:hover {
-    color: #6b43ff;
-    border-color: #6b43ff;
-  }
-  
-  .container .countries-select p {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .container .visa-details .divider {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .container .visa-details .divider .line {
-    height: 1px;
-    width: 100%;
-    background: #1d1d1d;
-    opacity: 0.2;
-    margin: 30px 0 16px;
-  }
-  
-  .container .visa-details {
-    padding-top: 25px;
-  }
-  
-  .container .visa-details label {
-    color: #1d1d1d;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 0.03rem;
-    display: block;
-    margin-top: 12px;
-  }
