@@ -37,6 +37,13 @@ namespace pass_trip.Business.Services
             return GetFirstCheckExists() ? GetListPassportFromDbByName(name) : [];
 		}
 
+        public Passport GetPassportInfoByOriginAndDestCountries(string originCountry, string destCountry)
+        {
+            return GetFirstCheckExists() ? 
+             _context.Passports.Where(p => p.origin == originCountry && p.destination == destCountry).First()
+             : new();
+        }
+
 		private List<Passport> StreamParser(string filePath)
 		{
             var passportList = new List<Passport>();

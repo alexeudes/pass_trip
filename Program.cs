@@ -24,7 +24,7 @@ builder.Services.AddScoped<IPassportRepository, PassportRepository>();
 //Business
 builder.Services.AddScoped<ICountriesService, CountriesService>();
 builder.Services.AddScoped<IPassportService, PassportService>();
-
+builder.Services.AddScoped<IVisaRequirements, VisaRequirementsService>();
 
 #endregion
 
@@ -35,8 +35,8 @@ app.UseSwagger();
 if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 
-app.UseDefaultFiles();
-app.UseStaticFiles();
+// app.UseDefaultFiles();
+// app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
