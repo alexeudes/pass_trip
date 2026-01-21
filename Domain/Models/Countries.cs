@@ -20,8 +20,8 @@ namespace pass_trip.Domain.Models
         [JsonPropertyName("region")]
         public string Region { get; set; }
 
-        [JsonPropertyName("flag")]
-        public string Flag { get; set; }
+        [JsonPropertyName("flags")]
+        public Flags Flags { get; set; }
 
         [JsonPropertyName("languages")]
         public Dictionary<string, string> Languages { get; set; }
@@ -55,6 +55,15 @@ namespace pass_trip.Domain.Models
 
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; }
+    }
+
+    public class Flags
+    {
+        [JsonPropertyName("png")]
+        public string Png { get; set; }
+
+        [JsonPropertyName("svg")]
+        public string Svg { get; set; }
     }
 }
 

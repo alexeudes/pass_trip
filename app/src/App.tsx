@@ -75,21 +75,7 @@ function App() {
     setSelectedDestinationCountry(value);
   };
 
-  const getFlagEmoji = (flag: string) => {
-    console.log("cheugei");
-    console.log("bandeira: ", flag);
-    console.log("tamanho bandeira: ", flag.length);
-    // If it's a 2-letter country code, convert to emoji
-    if (flag && flag.length === 2 && /^[A-Z]{2}$/i.test(flag)) {
-      console.log("entrou");
-      const codePoints = flag
-        .toUpperCase()
-        .split('')
-        .map(char => 127397 + char.charCodeAt(0));
-      return String.fromCodePoint(...codePoints);
-    }
-    return flag;
-  };
+
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
@@ -215,7 +201,11 @@ function App() {
             <Card className="col-span-1 md:col-span-2 lg:col-span-3 border-none shadow-lg bg-white">
               <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <div className="flex items-center gap-4">
-                  <span className="text-6xl">{getFlagEmoji(visaInfo.country.flag.replace(/\s+/g, ''))}</span>
+                  <img
+                    src={visaInfo.country.flags.svg}
+                    alt={`${visaInfo.country.name} flag`}
+                    className="w-20 h-auto rounded shadow-sm border border-slate-100"
+                  />
                   <div>
                     <CardTitle className="text-3xl font-bold text-slate-900">{visaInfo.country.name}</CardTitle>
                     <CardDescription className="text-lg font-medium text-slate-500">{visaInfo.country.region}</CardDescription>

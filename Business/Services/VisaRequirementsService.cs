@@ -40,7 +40,11 @@ namespace pass_trip.Business.Services
                     {
                         Name = country.Name.Common,
                         Region = country.Region,
-                        Flag = country.Flag,
+                        Flags = new FlagsDto
+                        {
+                            Png = country.Flags.Png,
+                            Svg = country.Flags.Svg
+                        },
                         Capitals = country.Capital,
                         Population = country.Population,
                         Area = country.Area,

@@ -14,9 +14,14 @@ export interface IVisaDto {
 export interface ICountryDto {
     name: string;
     region: string;
-    flag: string;
+    flags: IFlagsDto;
     capitals: string[];
     population: number;
     area: number;
     timezones: string[];
+}
+
+export interface IFlagsDto {
+    png: string;
+    svg: string;
 }
