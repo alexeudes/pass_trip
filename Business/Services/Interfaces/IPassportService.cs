@@ -11,6 +11,7 @@ namespace pass_trip.Business.Services.Interfaces
         List<Passport> GetListPassportFromDb();
         List<Passport> GetListPassportFromDbByName(string name);
         bool UpdateDbWithPassportIndex();
+        List<string> GetListOfOriginCountryPassport();
     }
 }
 

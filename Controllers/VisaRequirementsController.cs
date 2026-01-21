@@ -15,8 +15,8 @@ namespace pass_trip.Controllers
             _visaRequirements = visaRequirements;
         }
 
-        [HttpGet(Name = "GetDestinationCountryInfo/{countryName}")]
-        public async Task<ActionResult<PassportCountryResponseDto>> GetDestinationCountryInfo([FromQuery] string originCountry, string destCountry)
+        [HttpGet]
+        public async Task<ActionResult<PassportCountryResponseDto>> GetDestinationCountryInfo(string originCountry, string destCountry)
         {
             return await _visaRequirements.GetPassportCountryResponse(originCountry, destCountry);
         }

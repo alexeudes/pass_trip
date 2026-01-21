@@ -120,6 +120,11 @@ namespace pass_trip.Business.Services
             return _context.Passports.ToList();
         }
 
+        public List<string> GetListOfOriginCountryPassport()
+        {
+            return [.. _context.Passports.Select(p => p.origin).Distinct()];
+        }
+
         public List<Passport> GetListPassportFromDbByName(string name)
         {
             return _context.Passports.Where(p => p.origin == name).ToList();

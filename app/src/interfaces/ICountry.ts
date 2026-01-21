@@ -1,15 +1,15 @@
 import { EVisa } from "../Enum/VisaEnum"
 export interface ICountry {
-    ID: number;
-    name: { common: string};
+    ID: string; // Guid in backend
+    name: { common: string, official?: string };
     capital?: string[];
     region?: string;
     flag?: string;
-    languages?: string[];
+    languages?: { [key: string]: string };
     area: number;
     population: number;
     timezones: string[];
-    currencies: { curr: ICurrency };
+    currencies: { [key: string]: ICurrency };
 }
 
 export interface ILanguage {
