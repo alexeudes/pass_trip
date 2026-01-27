@@ -20,6 +20,9 @@ namespace pass_trip.Domain.Models
         [JsonPropertyName("region")]
         public string Region { get; set; }
 
+        [JsonPropertyName("subregion")]
+        public string Subregion { get; set; }
+
         [JsonPropertyName("flags")]
         public Flags Flags { get; set; }
 

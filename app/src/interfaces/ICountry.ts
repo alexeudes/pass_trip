@@ -5,6 +5,7 @@ export interface ICountry {
     name: { common: string, official?: string };
     capital?: string[];
     region?: string;
+    subregion?: string;
     flags: IFlag;
     languages?: { [key: string]: string };
     area: number;

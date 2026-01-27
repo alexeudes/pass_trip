@@ -1,7 +1,7 @@
-using Microsoft.OpenApi.Extensions;
 using pass_trip.Business.Services.Interfaces;
 using pass_trip.DTO;
 using pass_trip.Helpers;
+using pass_trip.Enums;
 
 namespace pass_trip.Business.Services
 {
@@ -32,7 +32,7 @@ namespace pass_trip.Business.Services
                     Visa = new VisaDto
                     {
                         Code = (int)passport.requirement,
-                        Description = passport.requirement.GetDisplayName(),
+                        Description = passport.requirement.GetDescription() + (passport.requirement == Enums.VisaEnum.free_days_limit ? " days" : ""),
                         NumberOfDays = passport.numberOfDays
                     },
 
@@ -40,6 +40,7 @@ namespace pass_trip.Business.Services
                     {
                         Name = country.Name.Common,
                         Region = country.Region,
+                        Subregion = country.Subregion,
                         Flags = new FlagsDto
                         {
                             Png = country.Flags.Png,

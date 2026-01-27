@@ -14,6 +14,7 @@ export interface IVisaDto {
 export interface ICountryDto {
     name: string;
     region: string;
+    subregion: string;
     flags: IFlagsDto;
     capitals: string[];
     population: number;

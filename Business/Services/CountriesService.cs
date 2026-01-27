@@ -19,7 +19,7 @@ namespace pass_trip.Business.Services
 		public async Task<Country> GetCountry(string countryName)
 		{
 			var httpClient = Util.GetHttpInstance();
-			var response = await httpClient.GetAsync($"{_configuration.GetValue<string>("COUNTRIES_API")}name/{countryName}");
+			var response = await httpClient.GetAsync($"{_configuration.GetValue<string>("COUNTRIES_API")}name/{Uri.EscapeDataString(countryName)}?fullText=true");
 
 			response.EnsureSuccessStatusCode();
 

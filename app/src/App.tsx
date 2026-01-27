@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "./components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./components/ui/card";
-import { Globe, PlaneTakeoff, PlaneLanding, MapPin, Users, Globe2, Compass, AlertCircle, Info, Clock } from 'lucide-react';
+import { Globe, PlaneTakeoff, PlaneLanding, MapPin, Users, Globe2, Compass, AlertCircle, Info, Clock, ChevronDown, ChevronUp } from 'lucide-react';
 
 const API_BASE_URL = 'https://localhost:7109';
 
@@ -21,6 +21,7 @@ function App() {
   const [selectedDestinationCountry, setSelectedDestinationCountry] = useState<string>("");
   const [visaInfo, setVisaInfo] = useState<IVisaResponse | null>(null);
   const [detailsLoading, setDetailsLoading] = useState(false);
+  const [isTimezonesExpanded, setIsTimezonesExpanded] = useState(false);
 
   useEffect(() => {
     const fetchCountryNames = async () => {
@@ -69,10 +70,12 @@ function App() {
     setSelectedOriginCountry(value);
     setSelectedDestinationCountry("");
     setVisaInfo(null);
+    setIsTimezonesExpanded(false);
   };
 
   const handleDestinationChange = (value: string) => {
     setSelectedDestinationCountry(value);
+    setIsTimezonesExpanded(false);
   };
 
 
@@ -190,7 +193,7 @@ function App() {
                     <span className="text-xs font-bold text-slate-500 uppercase">Duration</span>
                     <div className="flex items-center gap-2 text-primary font-bold">
                       <Clock className="h-4 w-4" />
-                      <span>{visaInfo.visa.numberOfDays}</span>
+                      <span>{visaInfo.visa.numberOfDays} days</span>
                     </div>
                   </div>
                 )}
@@ -208,7 +211,9 @@ function App() {
                   />
                   <div>
                     <CardTitle className="text-3xl font-bold text-slate-900">{visaInfo.country.name}</CardTitle>
-                    <CardDescription className="text-lg font-medium text-slate-500">{visaInfo.country.region}</CardDescription>
+                    <CardDescription className="text-lg font-medium text-slate-500">
+                      {visaInfo.country.region} - {visaInfo.country.subregion}
+                    </CardDescription>
                   </div>
                 </div>
                 <div className="px-4 py-2 bg-secondary/10 text-secondary rounded-full font-bold text-sm">
@@ -240,9 +245,40 @@ function App() {
                   </div>
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-slate-50">
                     <Compass className="h-5 w-5 text-primary mt-1" />
-                    <div>
+                    <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Timezone</p>
-                      <p className="font-semibold text-slate-900">{visaInfo.country.timezones?.join(', ') || 'N/A'}</p>
+                      <div className="mt-1">
+                        {visaInfo.country.timezones && visaInfo.country.timezones.length > 0 ? (
+                          <div className="flex flex-col gap-1">
+                            <p className="font-semibold text-slate-900 truncate">
+                              {visaInfo.country.timezones[0]}
+                            </p>
+                            {visaInfo.country.timezones.length > 1 && (
+                              <button
+                                onClick={() => setIsTimezonesExpanded(!isTimezonesExpanded)}
+                                className="text-xs font-bold text-primary hover:text-primary/80 flex items-center gap-1 transition-colors mt-1"
+                              >
+                                {isTimezonesExpanded ? (
+                                  <>Show less <ChevronUp className="h-3 w-3" /></>
+                                ) : (
+                                  <>+{visaInfo.country.timezones.length - 1} more timezones <ChevronDown className="h-3 w-3" /></>
+                                )}
+                              </button>
+                            )}
+                            {isTimezonesExpanded && (
+                              <div className="flex flex-col gap-1 mt-1 animate-in slide-in-from-top-1 duration-200">
+                                {visaInfo.country.timezones.slice(1).map((tz, idx) => (
+                                  <p key={idx} className="font-medium text-sm text-slate-600 border-l-2 border-primary/20 pl-2">
+                                    {tz}
+                                  </p>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <p className="font-semibold text-slate-900">N/A</p>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
