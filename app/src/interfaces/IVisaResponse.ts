@@ -20,6 +20,9 @@ export interface ICountryDto {
     population: number;
     area: number;
     timezones: string[];
+    carSide?: string;
+    postalCodeFormat?: string;
+    startOfWeek?: string;
 }
 
 export interface IFlagsDto {

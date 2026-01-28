@@ -12,6 +12,9 @@ export interface ICountry {
     population: number;
     timezones: string[];
     currencies: { [key: string]: ICurrency };
+    carSide?: string;
+    postalCodeFormat?: string;
+    startOfWeek?: string;
 }
 
 export interface ILanguage {

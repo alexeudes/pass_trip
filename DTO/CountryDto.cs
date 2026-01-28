@@ -27,6 +27,15 @@ namespace pass_trip.DTO
 
         [JsonPropertyName("timezones")]
         public string[] Timezones { get; set; }
+
+        [JsonPropertyName("carSide")]
+        public string CarSide { get; set; }
+
+        [JsonPropertyName("postalCodeFormat")]
+        public string PostalCodeFormat { get; set; }
+
+        [JsonPropertyName("startOfWeek")]
+        public string StartOfWeek { get; set; }
     }
 
     public class FlagsDto

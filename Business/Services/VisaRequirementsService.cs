@@ -49,7 +49,10 @@ namespace pass_trip.Business.Services
                         Capitals = country.Capital,
                         Population = country.Population,
                         Area = country.Area,
-                        Timezones = country.Timezones
+                        Timezones = country.Timezones,
+                        CarSide = country.Car?.Side,
+                        PostalCodeFormat = country.PostalCode?.Format,
+                        StartOfWeek = country.StartOfWeek
                     }
                 };
             }

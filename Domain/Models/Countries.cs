@@ -40,6 +40,15 @@ namespace pass_trip.Domain.Models
 
         [JsonPropertyName("currencies")]
         public Dictionary<string, Currency> Currencies { get; set; }
+
+        [JsonPropertyName("car")]
+        public Car Car { get; set; }
+
+        [JsonPropertyName("postalCode")]
+        public PostalCode PostalCode { get; set; }
+
+        [JsonPropertyName("startOfWeek")]
+        public string StartOfWeek { get; set; }
     }
 
     public class CountryName
@@ -67,6 +76,18 @@ namespace pass_trip.Domain.Models
 
         [JsonPropertyName("svg")]
         public string Svg { get; set; }
+    }
+
+    public class Car
+    {
+        [JsonPropertyName("side")]
+        public string Side { get; set; }
+    }
+
+    public class PostalCode
+    {
+        [JsonPropertyName("format")]
+        public string Format { get; set; }
     }
 }
 

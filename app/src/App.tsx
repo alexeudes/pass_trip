@@ -9,7 +9,7 @@ import {
   SelectValue,
 } from "./components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./components/ui/card";
-import { Globe, PlaneTakeoff, PlaneLanding, MapPin, Users, Globe2, Compass, AlertCircle, Info, Clock, ChevronDown, ChevronUp } from 'lucide-react';
+import { Globe, PlaneTakeoff, PlaneLanding, MapPin, Users, Globe2, Compass, AlertCircle, Info, Clock, ChevronDown, ChevronUp, Car, Mail, Calendar } from 'lucide-react';
 
 const API_BASE_URL = 'https://localhost:7109';
 
@@ -279,6 +279,27 @@ function App() {
                           <p className="font-semibold text-slate-900">N/A</p>
                         )}
                       </div>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-4 rounded-xl bg-slate-50">
+                    <Car className="h-5 w-5 text-primary mt-1" />
+                    <div>
+                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Driving Side</p>
+                      <p className="font-semibold text-slate-900 capitalize">{visaInfo.country.carSide || 'N/A'}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-4 rounded-xl bg-slate-50">
+                    <Mail className="h-5 w-5 text-primary mt-1" />
+                    <div>
+                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Postal Format</p>
+                      <p className="font-semibold text-slate-900">{visaInfo.country.postalCodeFormat || 'N/A'}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-4 rounded-xl bg-slate-50">
+                    <Calendar className="h-5 w-5 text-primary mt-1" />
+                    <div>
+                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">Start of Week</p>
+                      <p className="font-semibold text-slate-900 capitalize">{visaInfo.country.startOfWeek || 'N/A'}</p>
                     </div>
                   </div>
                 </div>
